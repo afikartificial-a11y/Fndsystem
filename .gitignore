@@ -1,0 +1,10 @@
+# build/preview artifacts
+preview/
+dist/
+.wrangler/
+node_modules/
+
+# OS files
+Thumbs.db
+desktop.ini
+.DS_Store
