@@ -8,6 +8,39 @@
 
   var WHATSAPP = '6285121951022';
 
+  /* ---------- hero photo follows the slide ---------- */
+  (function () {
+    var layers = document.querySelectorAll('.main-banner .hero-photo');
+    var slides = document.querySelectorAll('.main-banner .owl-banner .item[data-photo]');
+    if (layers.length !== 2 || !slides.length) { return; }
+
+    var photos = Array.prototype.map.call(slides, function (el) {
+      return el.getAttribute('data-photo');
+    });
+    var front = 0;
+
+    function show(index) {
+      if (!photos.length) { return; }
+      var i = ((index % photos.length) + photos.length) % photos.length;
+      var src = photos[i];
+      if (!src) { return; }
+      var back = 1 - front;
+      layers[back].style.backgroundImage = 'url("' + src + '")';
+      layers[back].classList.add('is-visible');
+      layers[front].classList.remove('is-visible');
+      front = back;
+    }
+
+    if (window.jQuery) {
+      window.jQuery('.owl-banner').on('changed.owl.carousel', function (e) {
+        var i = (e.page && typeof e.page.index === 'number')
+          ? e.page.index
+          : (e.item && e.item.index) || 0;
+        show(i);
+      });
+      window.setTimeout(function () { show(0); }, 400);
+    }
+  })();
   /* ---------- preloader safety ----------
      The template hides the preloader only on window.load; if an external
      resource (fonts, map) is slow, visitors would stare at the spinner. */

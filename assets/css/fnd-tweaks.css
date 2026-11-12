@@ -795,3 +795,63 @@ form#contactForm button:hover {
   -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 18%);
   mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 18%);
 }
+
+/* ---------- per-slide hero photo ----------
+   the template paints one fixed photo in .main-banner:before;
+   we replace it with two stacked layers that cross-fade so each
+   slide shows the photo matching its selling point */
+.main-banner:before {
+  background-image: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.main-banner .hero-photo {
+  position: absolute;
+  top: 100px;
+  right: 0;
+  width: 819px;
+  height: 674px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  opacity: 0;
+  transition: opacity 0.55s ease;
+  z-index: 1;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 18%);
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 18%);
+}
+
+.main-banner .hero-photo.is-visible {
+  opacity: 1;
+}
+
+@media (max-width: 1240px) and (min-width: 993px) {
+  .main-banner .hero-photo {
+    width: 640px;
+    height: 526px;
+  }
+}
+
+@media (max-width: 992px) {
+  .main-banner .hero-photo {
+    display: none;
+  }
+}
+
+/* let the hero text veil fade past the carousel edge instead of being clipped
+   (non-active slides are already hidden via opacity, so nothing leaks) */
+.main-banner .owl-stage-outer {
+  overflow: visible;
+}
+
+/* the per-slide white veil left a visible rectangle over the photo, so the
+   blend is now handled by the photo's own feathered left edge instead */
+.main-banner .owl-item .item::before {
+  content: none;
+}
+
+.main-banner .item h2 {
+  max-width: 92%;
+}
