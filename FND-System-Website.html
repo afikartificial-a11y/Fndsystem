@@ -22459,7 +22459,7 @@ return ImagesLoaded;
   /* ---------- hero photo follows the slide ---------- */
   (function () {
     var layers = document.querySelectorAll('.main-banner .hero-photo');
-    var slides = document.querySelectorAll('.main-banner .owl-banner .item[data-photo]');
+    var slides = document.querySelectorAll('.main-banner .owl-item:not(.cloned) .item[data-photo]');
     if (layers.length !== 2 || !slides.length) { return; }
 
     var photos = Array.prototype.map.call(slides, function (el) {
@@ -22480,15 +22480,14 @@ return ImagesLoaded;
     }
 
     if (window.jQuery) {
-      window.jQuery('.owl-banner').on('changed.owl.carousel', function (e) {
-        var i = (e.page && typeof e.page.index === 'number')
-          ? e.page.index
-          : (e.item && e.item.index) || 0;
-        show(i);
+      // the photo follows the numbered dots (the only navigation on the banner),
+      // which keeps it in sync even when the carousel loops through clones
+      var dots = document.querySelectorAll('.owl-banner .owl-dot');
+      Array.prototype.forEach.call(dots, function (dot, index) {
+        dot.addEventListener('click', function () { show(index); });
       });
-      window.setTimeout(function () { show(0); }, 400);
-    }
-  })();
+      window.setTimeout(function () { show(0); }, 300);
+    }  })();
   /* ---------- preloader safety ----------
      The template hides the preloader only on window.load; if an external
      resource (fonts, map) is slow, visitors would stare at the spinner. */
