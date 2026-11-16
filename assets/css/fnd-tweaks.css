@@ -1,817 +1,308 @@
 /* =========================================================
-   FnD System — small content adjustments on top of the
-   TemplateMo 565 Onix Digital stylesheet.
-   The template look (colors, cards, decorations, carousels)
-   is intentionally left untouched.
+   FnD System — Enhanced Stylesheet (v2.0 Professional & Mobile-First)
+   Built on top of TemplateMo 565 Onix Digital.
+   Clean, modern, accessible, and responsive for Desktop & Mobile.
    ========================================================= */
 
-/* ---------- logo ---------- */
-.header-area .main-nav .logo img {
-  width: 232px;
-  height: auto;
-  max-width: none;
+/* =========================================================
+   1. GLOBAL REFINEMENTS & ACCESSIBILITY
+   ========================================================= */
+:root {
+  --fnd-primary: #03a4ed;
+  --fnd-primary-dark: #0286c4;
+  --fnd-accent: #ff695f;
+  --fnd-accent-dark: #e8554b;
+  --fnd-dark: #1e293b;
+  --fnd-text: #475569;
+  --fnd-text-light: #64748b;
+  --fnd-bg-light: #f8fafc;
+  --fnd-border: #e2e8f0;
+  --fnd-radius-sm: 10px;
+  --fnd-radius-md: 18px;
+  --fnd-radius-lg: 24px;
+  --fnd-shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+  --fnd-shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+  --fnd-shadow-lg: 0 20px 35px -10px rgba(3, 164, 237, 0.15);
 }
 
-footer .about .logo img {
-  width: 210px;
-  height: auto;
+html {
+  scroll-behavior: smooth;
 }
 
-/* ---------- banner: keep long Indonesian headlines readable ---------- */
-/* the template gives each slide a 45px right margin, which leaves a sliver of
-   the next slide visible inside the column — remove it and let text wrap
-   inside the slide itself. */
-.main-banner .item {
-  margin-right: 0 !important;
+body {
+  color: var(--fnd-text);
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-.main-banner .item h2 {
-  font-size: 44px;
-  line-height: 62px;
-  max-width: 100%;
-}
-
-.main-banner .item p,
-.main-banner .item h6 {
-  max-width: 100%;
-}
-
-/* ---------- gallery tabs use images instead of video embeds ---------- */
-.our-videos .nacc .thumb img {
-  display: block;
-  width: 100%;
-  height: 560px;
-  object-fit: cover;
-  border-radius: 23px;
-}
-
-.our-videos ul.nacc {
-  min-height: 560px;
-}
-
-/* ---------- plans: template shows a struck-through price; we show a label ---------- */
-.pricing-tables .item em {
-  text-decoration: none;
-  font-size: 13px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  opacity: 0.8;
-}
-
-.pricing-tables .item span {
-  font-size: 38px;
-}
-
-.plan-note {
-  margin-top: 40px;
-  font-size: 13px;
-  color: #8a8a8a;
-  text-align: center;
-}
-
-/* ---------- clients ---------- */
-.our-clients {
-  padding: 110px 0 90px;
-}
-
-.our-clients .section-heading {
-  text-align: center;
-  margin-bottom: 55px;
-}
-
-.our-clients .section-heading span {
-  font-size: 46px;
-}
-
-.client-tags {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-}
-
-.client-tags span {
-  display: inline-block;
-  padding: 11px 20px;
-  border: 1px solid #e6e6e6;
-  border-radius: 25px;
-  font-size: 14px;
-  color: #4a4a4a;
-  background: #fff;
-  transition: all 0.3s;
-}
-
-.client-tags span:hover {
-  border-color: #03a4ed;
-  color: #03a4ed;
-  box-shadow: 0 6px 18px rgba(3, 164, 237, 0.12);
-}
-
-/* ---------- contact form: textarea-like need field stays single line ---------- */
-.contact-us form input#need {
-  width: 100%;
-}
-
-/* ---------- responsive ---------- */
-@media (max-width: 1240px) and (min-width: 993px) {
-  .main-banner .item h2 {
-    font-size: 34px;
-    line-height: 46px;
-  }
-}
-
-@media (max-width: 1199px) {
-  .header-area .main-nav .logo img {
-    width: 200px;
-  }
-}
-
-@media (max-width: 991px) {
-  .header-area .main-nav .logo img {
-    width: 176px;
-  }
-  .our-videos .nacc .thumb img {
-    height: 380px;
-  }
-  .our-videos ul.nacc {
-    min-height: 380px;
-    margin-bottom: 40px;
-  }
-}
-
-@media (max-width: 767px) {
-  .header-area .main-nav .logo img {
-    width: 150px;
-  }
-  .section-heading span {
-    font-size: 22px;
-    line-height: 1.3;
-  }
-  .main-banner .item h2 {
-    font-size: 30px;
-    line-height: 42px;
-  }
-  .our-videos .nacc .thumb img {
-    height: 240px;
-  }
-  .our-videos ul.nacc {
-    min-height: 240px;
-  }
-  .pricing-tables .item {
-    margin-bottom: 30px;
-  }
+/* Offset for fixed sticky header when clicking anchor links */
+section, [id] {
+  scroll-margin-top: 90px;
 }
 
 /* =========================================================
-   Blueprint additions (content sections that the template
-   does not ship with, styled with the template palette)
+   2. HEADER & NAVIGATION (DESKTOP & MOBILE)
    ========================================================= */
-
-/* ---------- why choose us ---------- */
-.why-us {
-  padding-top: 120px;
+.header-area {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  transition: all 0.3s ease;
+  z-index: 1000;
 }
 
-.why-us .section-heading {
-  text-align: center;
-  margin-bottom: 50px;
-}
-
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-
-.why-card {
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
-  padding: 32px 26px;
-  height: 100%;
-  transition: all 0.3s;
-}
-
-.why-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 12px 28px rgba(3, 164, 237, 0.12);
-}
-
-.why-card .num {
-  font-size: 13px;
-  font-weight: 700;
-  color: #ff695f;
-  letter-spacing: 0.14em;
-}
-
-.why-card h4 {
-  font-size: 17px;
-  color: #2a2a2a;
-  margin: 10px 0 12px;
-  line-height: 1.45;
-}
-
-.why-card p {
-  font-size: 14px;
-  line-height: 26px;
-  color: #7a7a7a;
-  margin: 0;
-}
-
-/* ---------- value tags in about ---------- */
-.value-tags {
+.header-area .main-nav {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 20px 0 5px;
-}
-
-.value-tags span {
-  font-size: 12.5px;
-  color: #03a4ed;
-  background: rgba(3, 164, 237, 0.08);
-  border-radius: 20px;
-  padding: 7px 15px;
-}
-
-/* ---------- accordions (expertise + FAQ) ---------- */
-.acc-fnd {
-  text-align: left;
-}
-
-.acc-fnd .accordion-item {
-  border: 1px solid #eee;
-  border-radius: 18px !important;
-  margin-bottom: 14px;
-  overflow: hidden;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.04);
-  background: #fff;
-}
-
-.acc-fnd .accordion-button {
-  font-size: 17px;
-  font-weight: 700;
-  color: #2a2a2a;
-  background: #fff;
-  padding: 22px 26px;
-  box-shadow: none;
-  border-radius: 18px !important;
-  text-align: left;
-}
-
-.acc-fnd .accordion-button:not(.collapsed) {
-  color: #03a4ed;
-  background: rgba(3, 164, 237, 0.05);
-  box-shadow: none;
-}
-
-.acc-fnd .accordion-button:focus {
-  box-shadow: none;
-  border-color: #eee;
-}
-
-.acc-fnd .accordion-button .pillar-no {
-  color: #ff695f;
-  margin-right: 14px;
-  font-size: 14px;
-  letter-spacing: 0.1em;
-}
-
-.acc-fnd .accordion-body {
-  font-size: 15px;
-  line-height: 30px;
-  color: #7a7a7a;
-  padding: 4px 26px 26px;
-}
-
-.acc-fnd .accordion-body ul {
-  margin-top: 12px;
-}
-
-.acc-fnd .accordion-body ul li {
-  font-size: 14px;
-  line-height: 28px;
-  color: #7a7a7a;
-  padding-left: 18px;
-  position: relative;
-}
-
-.acc-fnd .accordion-body ul li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 11px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #ffb3ae;
-}
-
-/* ---------- process steps ---------- */
-.steps-section {
-  padding-top: 120px;
-}
-
-.steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.step-item {
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
-  padding: 30px;
-  border-top: 3px solid rgba(3, 164, 237, 0.3);
-  transition: all 0.3s;
-}
-
-.step-item:hover {
-  border-top-color: #ff695f;
-  transform: translateY(-4px);
-}
-
-.step-item b {
-  display: block;
-  font-size: 34px;
-  color: rgba(3, 164, 237, 0.22);
-  font-weight: 800;
-  line-height: 1;
-  margin-bottom: 12px;
-}
-
-.step-item h4 {
-  font-size: 16.5px;
-  color: #2a2a2a;
-  margin-bottom: 8px;
-  line-height: 1.4;
-}
-
-.step-item p {
-  font-size: 13.5px;
-  line-height: 26px;
-  color: #7a7a7a;
-  margin: 0;
-}
-
-/* ---------- article cards ---------- */
-.articles {
-  padding-top: 120px;
-}
-
-.article-card {
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.06);
-  background: #fff;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.3s;
-}
-
-.article-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.1);
-}
-
-.article-card .thumb {
-  position: relative;
-}
-
-.article-card .thumb img {
-  display: block;
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
-}
-
-.article-card .badge-demo {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  background: rgba(255, 255, 255, 0.94);
-  color: #ff695f;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  padding: 5px 11px;
-  border-radius: 20px;
-  font-weight: 700;
-}
-
-.article-card .body {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.article-card .date {
-  font-size: 11.5px;
-  color: #a5a5a5;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.article-card h4 {
-  font-size: 17px;
-  margin: 9px 0 10px;
-  line-height: 1.5;
-  color: #2a2a2a;
-}
-
-.article-card p {
-  font-size: 13.5px;
-  line-height: 26px;
-  color: #7a7a7a;
-  margin: 0;
-}
-
-.article-card .read {
-  font-size: 13px;
-  color: #03a4ed;
-  font-weight: 600;
-  margin-top: auto;
-  padding-top: 16px;
-  display: inline-block;
-}
-
-.article-note {
-  text-align: center;
-  font-size: 12.5px;
-  color: #9a9a9a;
-  margin-top: 30px;
-}
-
-/* ---------- contact form (id renamed so the JS can target it) ---------- */
-form#contactForm {
-  margin-left: -100px;
-  position: relative;
-  z-index: 2;
-  background-image: url(../images/contact-form-bg.png);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-  padding: 60px 120px;
-  border-radius: 20px;
-}
-
-form#contactForm input,
-form#contactForm select,
-form#contactForm textarea {
-  width: 100%;
-  height: 46px;
-  border-radius: 0;
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid #9bdbf8;
-  outline: none;
-  font-size: 15px;
-  font-weight: 300;
-  color: #2a2a2a;
-  padding: 0;
-  margin-bottom: 35px;
-  font-family: 'Poppins', sans-serif;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-form#contactForm textarea {
-  height: 70px;
-  padding: 10px 0;
-  resize: vertical;
-}
-
-form#contactForm input::placeholder,
-form#contactForm textarea::placeholder {
-  color: #afafaf;
-}
-
-form#contactForm .fld-label {
-  display: block;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #9fb4c2;
-  margin-bottom: 4px;
-}
-
-form#contactForm .check-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-  margin-bottom: 30px;
-}
-
-form#contactForm .check-row label {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 12.5px;
-  color: #5a5a5a;
-  border: 1px solid #d9e8f1;
-  border-radius: 20px;
-  padding: 7px 13px;
-  cursor: pointer;
-  margin: 0;
-}
-
-form#contactForm .check-row input[type="checkbox"] {
-  width: 14px;
-  height: 14px;
-  margin: 0;
-  border: none;
-  accent-color: #03a4ed;
-  flex: 0 0 14px;
-}
-
-form#contactForm select {
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%239fb4c2' stroke-width='1.6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 4px center;
-  background-size: 12px 8px;
-  padding-right: 22px;
-}
-
-.contact-us .intro-note {
-  position: relative;
-  z-index: 5;
-  max-width: 520px;
-  margin: 0 0 34px;
-}
-
-.contact-us .intro-note p {
-  font-size: 15px;
-  line-height: 30px;
-  color: #7a7a7a;
-}
-
-form#contactForm button {
-  display: inline-block;
-  background-color: #ff695f;
-  font-size: 15px;
-  color: #fff;
-  padding: 12px 25px;
-  border-radius: 23px;
-  border: none;
-  outline: none;
-  transition: all 0.3s;
-  cursor: pointer;
-}
-
-form#contactForm button:hover {
-  background-color: #03a4ed;
-}
-
-/* ---------- contact bar (profile document style) ---------- */
-.contact-bar {
-  background: #03a4ed;
-  padding: 24px 0;
-  margin-top: 120px;
-  position: relative;
-  z-index: 3;
-}
-
-.contact-bar .inner {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
   align-items: center;
   justify-content: space-between;
 }
 
-.contact-bar .line {
-  display: flex;
-  flex-wrap: wrap;
+.header-area .main-nav .logo img {
+  width: 220px;
+  height: auto;
+  max-width: none;
+  transition: transform 0.3s ease;
+}
+
+.header-area .main-nav .logo:hover img {
+  transform: scale(1.02);
+}
+
+.header-area .main-nav .nav {
+  margin-top: 0 !important;
   align-items: center;
-  gap: 26px;
 }
 
-.contact-bar a,
-.contact-bar span {
-  color: #fff;
-  font-size: 14px;
+.header-area .main-nav .nav li a {
+  font-weight: 500;
+  font-size: 14.5px;
+  color: #334155 !important;
+  padding: 0 14px !important;
+  transition: all 0.25s ease;
 }
 
-.contact-bar .line a i {
-  margin-right: 8px;
-}
-
-.contact-bar .social a {
-  display: inline-flex;
-  width: 36px;
-  height: 36px;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  border-radius: 50%;
-  margin-left: 8px;
-  transition: all 0.3s;
-}
-
-.contact-bar .social a:hover {
-  background: #fff;
-  color: #03a4ed;
-}
-
-.contact-bar + .footer-dec {
-  margin-top: 70px;
-}
-
-/* ---------- floating WhatsApp ---------- */
-.wa-float {
-  position: fixed;
-  right: 22px;
-  bottom: 22px;
-  z-index: 99;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: linear-gradient(105deg, rgba(255, 104, 95, 1) 0%, rgba(255, 144, 104, 1) 100%);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  box-shadow: 0 12px 26px rgba(255, 104, 95, 0.4);
-  transition: transform 0.25s;
-}
-
-.wa-float:hover {
-  color: #fff;
-  transform: translateY(-3px) scale(1.05);
-}
-
-/* ---------- responsive for the new blocks ---------- */
-@media (max-width: 1199px) {
-  .why-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .steps {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  form#contactForm {
-    margin-left: -40px;
-    padding: 50px 60px;
-  }
-}
-
-@media (max-width: 991px) {
-  .why-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  form#contactForm {
-    margin-left: 0;
-    padding: 40px 40px;
-  }
-}
-
-@media (max-width: 767px) {
-  .why-us,
-  .articles {
-    padding-top: 70px;
-  }
-  .why-grid,
-  .steps {
-    grid-template-columns: 1fr;
-  }
-  form#contactForm {
-    padding: 30px 24px;
-  }
-  .contact-bar .inner {
-    justify-content: center;
-    text-align: center;
-  }
-  .contact-bar .line {
-    justify-content: center;
-    gap: 14px;
-  }
-}
-
-/* the left decoration overlapped the new intro text — keep only the right one */
-.contact-us .contact-left-dec {
-  display: none;
-}
-
-.contact-us #map.map-card {
-  position: relative;
-  z-index: 2;
-  background: #f4f9fc;
-  border: 1px dashed #bfe4f7;
-  border-radius: 23px;
-  padding: 34px 36px;
-  margin-bottom: 10px;
-}
-
-.map-card i.fa-map-marker {
-  display: inline-block;
-  width: 46px;
-  height: 46px;
-  line-height: 46px;
-  text-align: center;
-  border-radius: 50%;
-  background: linear-gradient(105deg, rgba(255,104,95,1) 0%, rgba(255,144,104,1) 100%);
-  color: #fff;
-  font-size: 21px;
-  margin-bottom: 14px;
-}
-
-.map-card h4 {
-  font-size: 18px;
-  color: #2a2a2a;
-  margin-bottom: 8px;
-}
-
-.map-card p {
-  font-size: 14px;
-  line-height: 26px;
-  color: #7a7a7a;
-  margin: 0 0 16px;
-}
-
-.map-card p span {
-  font-size: 12px;
-  color: #8a97a1;
-}
-
-.map-card .map-actions a {
-  display: inline-block;
-  font-size: 13px;
+.header-area .main-nav .nav li a:hover,
+.header-area .main-nav .nav li a.active {
+  color: var(--fnd-primary) !important;
   font-weight: 600;
-  color: #03a4ed;
-  margin-right: 22px;
 }
 
-/* keep banner text above the hero photo, and the carousel clipped to its column */
-.main-banner:before {
-  z-index: 1;
+.header-area .main-nav .nav li:last-child .main-red-button-hover a {
+  background: linear-gradient(135deg, #ff695f 0%, #ff857d 100%) !important;
+  color: #fff !important;
+  border-radius: 50px !important;
+  padding: 10px 22px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  height: auto !important;
+  line-height: normal !important;
+  box-shadow: 0 4px 14px rgba(255, 105, 95, 0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
 }
 
-.main-banner .owl-carousel,
-.main-banner .owl-stage-outer,
-.main-banner .owl-item {
+.header-area .main-nav .nav li:last-child .main-red-button-hover a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 105, 95, 0.45);
+  background: linear-gradient(135deg, #03a4ed 0%, #38bdf8 100%) !important;
+}
+
+/* Mobile Nav Drawer Enhancements */
+@media (max-width: 991px) {
+  .header-area {
+    height: 80px;
+    padding: 15px 20px;
+  }
+  
+  .header-area .main-nav .logo img {
+    width: 175px;
+  }
+  
+  .header-area .main-nav .menu-trigger {
+    top: 22px !important;
+    right: 20px !important;
+  }
+  
+  .header-area .main-nav .nav {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    border-radius: 0 0 20px 20px;
+    padding: 16px 20px 24px;
+    border-top: 1px solid #f1f5f9;
+  }
+  
+  .header-area .main-nav .nav li {
+    background: transparent !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    text-align: left;
+  }
+  
+  .header-area .main-nav .nav li a {
+    height: 48px !important;
+    line-height: 48px !important;
+    padding: 0 12px !important;
+    background: transparent !important;
+    font-size: 15px !important;
+    color: #1e293b !important;
+    border-radius: 8px;
+  }
+  
+  .header-area .main-nav .nav li a:hover,
+  .header-area .main-nav .nav li a.active {
+    background: rgba(3, 164, 237, 0.08) !important;
+    color: var(--fnd-primary) !important;
+    padding-left: 18px !important;
+  }
+  
+  .header-area .main-nav .nav li:last-child {
+    border-bottom: none !important;
+    margin-top: 14px;
+  }
+  
+  .header-area .main-nav .nav li:last-child .main-red-button-hover a {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px !important;
+    font-size: 15px !important;
+    border-radius: 12px !important;
+  }
+}
+
+/* =========================================================
+   3. HERO BANNER & MOBILE SHOWCASE
+   ========================================================= */
+.main-banner {
   position: relative;
-  z-index: 2;
-}
-
-.main-banner .owl-stage-outer {
+  padding: 160px 0 100px;
   overflow: hidden;
+  background: radial-gradient(circle at top right, rgba(3, 164, 237, 0.06), transparent 50%),
+              radial-gradient(circle at bottom left, rgba(255, 105, 95, 0.05), transparent 40%);
 }
 
-/* only the active hero slide is visible — stops the next slide from peeking
-   into the column on wide screens while keeping the fade transition */
-.main-banner .owl-item {
-  opacity: 0;
-  transition: opacity 0.45s ease;
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(3, 164, 237, 0.1);
+  color: var(--fnd-primary);
+  border: 1px solid rgba(3, 164, 237, 0.25);
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
 }
 
-.main-banner .owl-item.active {
-  opacity: 1;
+.hero-badge i {
+  color: var(--fnd-accent);
 }
 
-/* soft white veil behind the hero copy so the text stays readable where it
-   meets the photo on wide screens (the template assumed much shorter text) */
-.main-banner .owl-item .item {
-  position: relative;
-  z-index: 0;
+.main-banner .item h6 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--fnd-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
 }
 
-.main-banner .owl-item .item::before {
-  content: '';
-  position: absolute;
-  top: -12px;
-  bottom: -12px;
-  left: -34px;
-  right: -120px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.97) 55%, rgba(255, 255, 255, 0) 100%);
-  z-index: -1;
-  pointer-events: none;
+.main-banner .item h2 {
+  font-size: 44px;
+  line-height: 1.25;
+  font-weight: 800;
+  color: var(--fnd-dark);
+  margin-bottom: 20px;
 }
 
-/* feather the photo's left edge so it melts into the white column */
-.main-banner:before {
-  -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 18%);
-  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 18%);
+.main-banner .item h2 em {
+  font-style: normal;
+  color: var(--fnd-accent);
 }
 
-/* ---------- per-slide hero photo ----------
-   the template paints one fixed photo in .main-banner:before;
-   we replace it with two stacked layers that cross-fade so each
-   slide shows the photo matching its selling point */
-.main-banner:before {
-  background-image: none;
-  -webkit-mask-image: none;
-  mask-image: none;
+.main-banner .item h2 span {
+  color: var(--fnd-primary);
 }
 
+.main-banner .item p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--fnd-text-light);
+  margin-bottom: 32px;
+  max-width: 95%;
+}
+
+.main-banner .down-buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.main-blue-button-hover a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #03a4ed 0%, #0286c4 100%) !important;
+  color: #fff !important;
+  padding: 14px 30px !important;
+  border-radius: 50px !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  box-shadow: 0 6px 18px rgba(3, 164, 237, 0.3);
+  transition: all 0.3s ease;
+}
+
+.main-blue-button-hover a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(3, 164, 237, 0.45);
+}
+
+.call-button a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  padding: 13px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 14.5px;
+  box-shadow: var(--fnd-shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.call-button a i {
+  color: #25d366;
+  font-size: 18px;
+}
+
+.call-button a:hover {
+  border-color: var(--fnd-primary);
+  color: var(--fnd-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--fnd-shadow-md);
+}
+
+/* Hero per-slide photos */
 .main-banner .hero-photo {
   position: absolute;
   top: 100px;
   right: 0;
-  width: 819px;
-  height: 674px;
+  width: 820px;
+  height: 670px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -827,31 +318,1236 @@ form#contactForm button:hover {
   opacity: 1;
 }
 
-@media (max-width: 1240px) and (min-width: 993px) {
-  .main-banner .hero-photo {
-    width: 640px;
-    height: 526px;
-  }
+/* Mobile Hero Visual Showcase Card */
+.hero-mobile-visual {
+  display: none;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
+  .main-banner {
+    padding: 110px 0 60px;
+  }
+  
   .main-banner .hero-photo {
     display: none;
   }
+  
+  .hero-mobile-visual {
+    display: block;
+    margin-top: 35px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--fnd-shadow-md);
+  }
+  
+  .hero-mobile-visual img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .hero-mobile-badge {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .hero-mobile-badge span {
+    color: #38bdf8;
+    font-weight: 600;
+  }
+  
+  .main-banner .item h2 {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+  
+  .main-banner .item p {
+    font-size: 14.5px;
+  }
 }
 
-/* let the hero text veil fade past the carousel edge instead of being clipped
-   (non-active slides are already hidden via opacity, so nothing leaks) */
-.main-banner .owl-stage-outer {
-  overflow: visible;
+/* =========================================================
+   4. WHY CHOOSE US (MENGAPA MEMILIH KAMI)
+   ========================================================= */
+.why-us {
+  padding: 100px 0 60px;
 }
 
-/* the per-slide white veil left a visible rectangle over the photo, so the
-   blend is now handled by the photo's own feathered left edge instead */
-.main-banner .owl-item .item::before {
-  content: none;
+.section-heading {
+  text-align: center;
+  margin-bottom: 50px;
 }
 
-.main-banner .item h2 {
-  max-width: 92%;
+.section-heading span {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--fnd-accent);
+  margin-bottom: 10px;
+}
+
+.section-heading h2 {
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--fnd-dark);
+  line-height: 1.35;
+}
+
+.section-heading h2 em {
+  font-style: normal;
+  color: var(--fnd-primary);
+}
+
+.section-heading h2 span {
+  color: var(--fnd-accent);
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: normal;
+  text-transform: none;
+  margin-bottom: 0;
+  display: inline;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.why-card {
+  background: #ffffff;
+  border-radius: var(--fnd-radius-md);
+  border: 1px solid var(--fnd-border);
+  box-shadow: var(--fnd-shadow-sm);
+  padding: 32px 24px;
+  height: 100%;
+  position: relative;
+  transition: all 0.35s ease;
+  overflow: hidden;
+}
+
+.why-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--fnd-primary) 0%, var(--fnd-accent) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.why-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(3, 164, 237, 0.4);
+  box-shadow: var(--fnd-shadow-lg);
+}
+
+.why-card:hover::before {
+  opacity: 1;
+}
+
+.why-card .card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.why-card .num {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--fnd-accent);
+  letter-spacing: 0.1em;
+}
+
+.why-card .card-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(3, 164, 237, 0.1);
+  color: var(--fnd-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.why-card h4 {
+  font-size: 17.5px;
+  font-weight: 700;
+  color: var(--fnd-dark);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.why-card p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--fnd-text-light);
+  margin: 0;
+}
+
+/* =========================================================
+   5. LAYANAN UNGGULAN (SERVICES CAROUSEL)
+   ========================================================= */
+.our-services {
+  padding: 90px 0;
+  background: #f8fafc;
+}
+
+.our-services .item {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 34px 26px;
+  border: 1px solid #e2e8f0;
+  box-shadow: var(--fnd-shadow-sm);
+  transition: all 0.3s ease;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.our-services .item:hover {
+  transform: translateY(-6px);
+  border-color: var(--fnd-primary);
+  box-shadow: var(--fnd-shadow-lg);
+}
+
+.our-services .item .icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: rgba(3, 164, 237, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.our-services .item .icon img {
+  width: 36px;
+  height: 36px;
+}
+
+.our-services .item h4 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--fnd-dark);
+  margin-bottom: 14px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.our-services .item p {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--fnd-text-light);
+  text-align: center;
+  margin: 0;
+}
+
+.our-services .item .service-badge {
+  display: inline-block;
+  align-self: center;
+  background: rgba(255, 105, 95, 0.08);
+  color: var(--fnd-accent);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+/* =========================================================
+   6. ABOUT US & TRUST METRICS
+   ========================================================= */
+.about-us {
+  padding: 100px 0;
+}
+
+.about-us .left-image img {
+  border-radius: 24px;
+  box-shadow: var(--fnd-shadow-md);
+  width: 100%;
+}
+
+.value-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 24px 0 28px;
+}
+
+.value-tags span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fnd-primary);
+  background: rgba(3, 164, 237, 0.08);
+  border: 1px solid rgba(3, 164, 237, 0.2);
+  border-radius: 30px;
+  padding: 7px 16px;
+}
+
+.fact-item .count-area-content {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid var(--fnd-border);
+  box-shadow: var(--fnd-shadow-sm);
+  padding: 22px 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.fact-item .count-area-content:hover {
+  transform: translateY(-4px);
+  border-color: var(--fnd-primary);
+  box-shadow: var(--fnd-shadow-md);
+}
+
+.fact-item .count-digit {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--fnd-primary);
+  line-height: 1.2;
+}
+
+.fact-item .count-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--fnd-dark);
+  margin: 4px 0 6px;
+}
+
+.fact-item p {
+  font-size: 12px;
+  color: var(--fnd-text-light);
+  margin: 0;
+}
+
+/* =========================================================
+   7. CLIENTS & MITRA INDUSTRI (FILTERABLE)
+   ========================================================= */
+.our-clients {
+  padding: 100px 0 80px;
+  background: #f8fafc;
+}
+
+.client-filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 35px;
+}
+
+.client-filter-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.client-filter-btn:hover,
+.client-filter-btn.active {
+  background: var(--fnd-primary);
+  border-color: var(--fnd-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(3, 164, 237, 0.25);
+}
+
+.client-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.client-tag-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 30px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #334155;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+  transition: all 0.3s ease;
+}
+
+.client-tag-item i {
+  color: var(--fnd-primary);
+  font-size: 13px;
+}
+
+.client-tag-item:hover {
+  border-color: var(--fnd-primary);
+  color: var(--fnd-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(3, 164, 237, 0.15);
+}
+
+/* =========================================================
+   8. 5 PILAR KOMPETENSI & ACCORDION
+   ========================================================= */
+.acc-fnd .accordion-item {
+  border: 1px solid var(--fnd-border);
+  border-radius: 18px !important;
+  margin-bottom: 14px;
+  overflow: hidden;
+  box-shadow: var(--fnd-shadow-sm);
+  background: #ffffff;
+}
+
+.acc-fnd .accordion-button {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--fnd-dark);
+  background: #ffffff;
+  padding: 20px 24px;
+  box-shadow: none;
+  border-radius: 18px !important;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.acc-fnd .accordion-button:not(.collapsed) {
+  color: var(--fnd-primary);
+  background: rgba(3, 164, 237, 0.05);
+}
+
+.acc-fnd .accordion-button .pillar-no {
+  background: rgba(255, 105, 95, 0.12);
+  color: var(--fnd-accent);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+.acc-fnd .accordion-body {
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: var(--fnd-text-light);
+  padding: 6px 24px 24px;
+}
+
+.acc-fnd .accordion-body ul {
+  margin-top: 12px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.acc-fnd .accordion-body ul li {
+  font-size: 14px;
+  line-height: 2;
+  color: var(--fnd-text);
+  padding-left: 24px;
+  position: relative;
+}
+
+.acc-fnd .accordion-body ul li::before {
+  content: '\f00c';
+  font-family: 'FontAwesome';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--fnd-primary);
+  font-size: 12px;
+}
+
+/* =========================================================
+   9. ALUR KERJA 6 LANGKAH (PROCESS STEPS)
+   ========================================================= */
+.steps-section {
+  padding: 90px 0;
+  background: #f8fafc;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.step-item {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid var(--fnd-border);
+  box-shadow: var(--fnd-shadow-sm);
+  padding: 30px 24px;
+  border-top: 4px solid rgba(3, 164, 237, 0.4);
+  transition: all 0.35s ease;
+  position: relative;
+}
+
+.step-item:hover {
+  border-top-color: var(--fnd-accent);
+  transform: translateY(-5px);
+  box-shadow: var(--fnd-shadow-lg);
+}
+
+.step-item b {
+  display: block;
+  font-size: 32px;
+  color: rgba(3, 164, 237, 0.25);
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.step-item h4 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--fnd-dark);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.step-item p {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--fnd-text-light);
+  margin: 0;
+}
+
+/* =========================================================
+   10. SKEMA KERJA SAMA (PRICING & PACKAGES)
+   ========================================================= */
+.pricing-tables {
+  padding: 100px 0 80px;
+}
+
+.pricing-tables .item {
+  background: #ffffff;
+  border-radius: 22px;
+  border: 1px solid var(--fnd-border);
+  box-shadow: var(--fnd-shadow-sm);
+  padding: 34px 22px;
+  text-align: center;
+  transition: all 0.35s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.pricing-tables .item.popular {
+  border-color: var(--fnd-primary);
+  box-shadow: 0 12px 30px rgba(3, 164, 237, 0.15);
+  transform: scale(1.02);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--fnd-primary) 0%, var(--fnd-accent) 100%);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(3, 164, 237, 0.3);
+  white-space: nowrap;
+}
+
+.pricing-tables .item:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--fnd-shadow-lg);
+}
+
+.pricing-tables .item h4 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--fnd-dark);
+  margin-bottom: 6px;
+  line-height: 1.35;
+}
+
+.pricing-tables .item em {
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fnd-accent);
+}
+
+.pricing-tables .item span {
+  display: block;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--fnd-primary);
+  margin: 10px 0 16px;
+}
+
+.pricing-tables .item ul {
+  padding: 0;
+  list-style: none;
+  margin: 0 0 24px;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.pricing-tables .item ul li {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--fnd-text);
+  padding-left: 22px;
+  position: relative;
+  margin-bottom: 6px;
+}
+
+.pricing-tables .item ul li::before {
+  content: '\f058';
+  font-family: 'FontAwesome';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #10b981;
+  font-size: 13px;
+}
+
+.pricing-tables .item .main-blue-button-hover a {
+  width: 100%;
+  padding: 12px 20px !important;
+  font-size: 14px !important;
+}
+
+.pricing-transparency-box {
+  background: #ffffff;
+  border: 1px solid var(--fnd-border);
+  border-left: 4px solid var(--fnd-primary);
+  border-radius: 16px;
+  padding: 22px 26px;
+  margin-top: 30px;
+  box-shadow: var(--fnd-shadow-sm);
+  text-align: left;
+}
+
+.pricing-transparency-box h5 {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--fnd-dark);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pricing-transparency-box h5 i {
+  color: var(--fnd-primary);
+}
+
+.pricing-transparency-box p {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--fnd-text-light);
+  margin: 0;
+}
+
+/* =========================================================
+   11. GALERI & LIGHTBOX
+   ========================================================= */
+.our-videos {
+  padding: 90px 0;
+  background: #f8fafc;
+}
+
+.our-videos .nacc .thumb {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: var(--fnd-shadow-md);
+  cursor: pointer;
+}
+
+.our-videos .nacc .thumb img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.our-videos .nacc .thumb:hover img {
+  transform: scale(1.03);
+}
+
+.our-videos .nacc .overlay-effect {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.85) 100%);
+  padding: 30px;
+  color: #fff;
+}
+
+.our-videos .nacc .overlay-effect h4 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.our-videos .nacc .overlay-effect span {
+  color: #38bdf8;
+  font-size: 14px;
+}
+
+.our-videos .menu div {
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid var(--fnd-border);
+  margin-bottom: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.our-videos .menu div.active,
+.our-videos .menu div:hover {
+  background: var(--fnd-primary);
+  border-color: var(--fnd-primary);
+  box-shadow: 0 6px 18px rgba(3, 164, 237, 0.25);
+}
+
+.our-videos .menu div.active h4,
+.our-videos .menu div:hover h4 {
+  color: #ffffff !important;
+}
+
+.our-videos .menu div.active span,
+.our-videos .menu div:hover span {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* =========================================================
+   12. ARTIKEL & INSIGHT MODALS
+   ========================================================= */
+.articles {
+  padding: 100px 0 80px;
+}
+
+.article-card {
+  border-radius: 20px;
+  border: 1px solid var(--fnd-border);
+  overflow: hidden;
+  box-shadow: var(--fnd-shadow-sm);
+  background: #ffffff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s ease;
+}
+
+.article-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--fnd-shadow-lg);
+  border-color: rgba(3, 164, 237, 0.3);
+}
+
+.article-card .thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.article-card .thumb img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.article-card:hover .thumb img {
+  transform: scale(1.05);
+}
+
+.article-card .badge-category,
+.article-card .badge-demo {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(6px);
+  color: #38bdf8;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: 700;
+  z-index: 2;
+}
+
+.article-card .body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.article-card .date {
+  font-size: 12px;
+  color: var(--fnd-text-light);
+  margin-bottom: 8px;
+}
+
+.article-card h4 {
+  font-size: 17.5px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--fnd-dark);
+  margin-bottom: 10px;
+}
+
+.article-card p {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--fnd-text-light);
+  margin-bottom: 18px;
+}
+
+.article-card .read-btn {
+  font-size: 13.5px;
+  color: var(--fnd-primary);
+  font-weight: 700;
+  margin-top: auto;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+}
+
+.article-card .read-btn:hover {
+  color: var(--fnd-accent);
+}
+
+/* Modal styling for article popup */
+.modal-fnd .modal-content {
+  border-radius: 24px;
+  border: none;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.modal-fnd .modal-header {
+  background: linear-gradient(135deg, #03a4ed 0%, #0286c4 100%);
+  color: #fff;
+  padding: 22px 28px;
+  border-bottom: none;
+}
+
+.modal-fnd .modal-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.modal-fnd .btn-close {
+  filter: brightness(0) invert(1);
+}
+
+.modal-fnd .modal-body {
+  padding: 28px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #334155;
+}
+
+.modal-fnd .modal-body h5 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fnd-dark);
+  margin: 18px 0 8px;
+}
+
+.modal-fnd .modal-body ul {
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+
+/* =========================================================
+   13. FORMULIR KONTAK & WHATSAPP GENERATOR
+   ========================================================= */
+.contact-us {
+  padding: 100px 0;
+  background: #f8fafc;
+}
+
+form#contactForm {
+  background: #ffffff;
+  border: 1px solid var(--fnd-border);
+  box-shadow: var(--fnd-shadow-md);
+  padding: 44px 40px;
+  border-radius: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+form#contactForm h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--fnd-dark);
+  margin-bottom: 24px;
+}
+
+form#contactForm .fld-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+form#contactForm input,
+form#contactForm select,
+form#contactForm textarea {
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  outline: none;
+  font-size: 14.5px;
+  color: #1e293b;
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  font-family: inherit;
+  transition: all 0.25s ease;
+}
+
+form#contactForm input:focus,
+form#contactForm select:focus,
+form#contactForm textarea:focus {
+  background-color: #ffffff;
+  border-color: var(--fnd-primary);
+  box-shadow: 0 0 0 3px rgba(3, 164, 237, 0.15);
+}
+
+form#contactForm textarea {
+  height: 90px;
+  resize: vertical;
+}
+
+form#contactForm .check-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+form#contactForm .check-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  padding: 7px 14px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+form#contactForm .check-chip:hover {
+  background: #e2e8f0;
+}
+
+form#contactForm .check-chip.active {
+  background: var(--fnd-primary);
+  border-color: var(--fnd-primary);
+  color: #ffffff;
+  box-shadow: 0 3px 8px rgba(3, 164, 237, 0.25);
+}
+
+form#contactForm .check-chip input[type="checkbox"] {
+  display: none;
+}
+
+form#contactForm button#submit-contact {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+  transition: all 0.3s ease;
+}
+
+form#contactForm button#submit-contact:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+}
+
+.map-card {
+  background: #ffffff;
+  border: 1px solid var(--fnd-border);
+  border-radius: 22px;
+  padding: 30px;
+  box-shadow: var(--fnd-shadow-sm);
+  margin-top: 24px;
+}
+
+.map-card h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--fnd-dark);
+  margin-bottom: 8px;
+}
+
+.map-card p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--fnd-text-light);
+  margin-bottom: 16px;
+}
+
+.map-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.map-actions a {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--fnd-primary);
+}
+
+.map-actions a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   14. FLOATING WHATSAPP & FOOTER
+   ========================================================= */
+.wa-float {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 999;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+  transition: all 0.3s ease;
+  animation: pulse-wa 2.5s infinite;
+}
+
+.wa-float:hover {
+  color: #ffffff;
+  transform: scale(1.1) rotate(5deg);
+}
+
+@keyframes pulse-wa {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+  70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.contact-bar {
+  background: linear-gradient(135deg, #03a4ed 0%, #0286c4 100%);
+  padding: 20px 0;
+  color: #fff;
+}
+
+.contact-bar .inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.contact-bar a,
+.contact-bar span {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.contact-bar .line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+}
+
+.contact-bar .social a {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  margin-left: 8px;
+  transition: all 0.3s ease;
+}
+
+.contact-bar .social a:hover {
+  background: #ffffff;
+  color: var(--fnd-primary);
+}
+
+footer {
+  background: #0f172a;
+  color: #94a3b8;
+  padding: 80px 0 30px;
+}
+
+footer h4 {
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+footer ul {
+  padding: 0;
+  list-style: none;
+}
+
+footer ul li {
+  margin-bottom: 10px;
+}
+
+footer ul li a {
+  color: #94a3b8;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+footer ul li a:hover {
+  color: #38bdf8;
+}
+
+footer .copyright {
+  border-top: 1px solid #1e293b;
+  margin-top: 50px;
+  padding-top: 24px;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* =========================================================
+   15. RESPONSIVE BREAKPOINTS (TABLET & MOBILE)
+   ========================================================= */
+@media (max-width: 1199px) {
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pricing-tables .item.popular {
+    transform: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .why-us,
+  .our-services,
+  .about-us,
+  .our-clients,
+  .steps-section,
+  .pricing-tables,
+  .our-videos,
+  .articles,
+  .contact-us {
+    padding: 70px 0;
+  }
+  
+  .section-heading h2 {
+    font-size: 26px;
+  }
+  
+  .why-grid,
+  .steps {
+    grid-template-columns: 1fr;
+  }
+  
+  form#contactForm {
+    padding: 30px 20px;
+  }
+  
+  .contact-bar .inner {
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .contact-bar .line {
+    justify-content: center;
+    gap: 12px;
+  }
+  
+  .our-videos .nacc .thumb img {
+    height: 260px;
+  }
+  
+  .wa-float {
+    width: 52px;
+    height: 52px;
+    font-size: 26px;
+    right: 18px;
+    bottom: 18px;
+  }
 }
