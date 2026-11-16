@@ -1298,7 +1298,8 @@ form#contactForm .check-chip:hover {
   background: #e2e8f0;
 }
 
-form#contactForm .check-chip.active {
+form#contactForm .check-chip.active,
+form#contactForm .check-chip:has(input:checked) {
   background: var(--fnd-primary);
   border-color: var(--fnd-primary);
   color: #ffffff;

@@ -98,17 +98,19 @@
     /* ---------- Interactive Service Checkbox Chips in Form ---------- */
     var checkChips = document.querySelectorAll('.check-chip');
     checkChips.forEach(function (chip) {
-      chip.addEventListener('click', function (e) {
-        var input = chip.querySelector('input[type="checkbox"]');
-        if (e.target !== input) {
-          input.checked = !input.checked;
-        }
+      var input = chip.querySelector('input[type="checkbox"]');
+      if (!input) return;
+
+      function syncChipState() {
         if (input.checked) {
           chip.classList.add('active');
         } else {
           chip.classList.remove('active');
         }
-      });
+      }
+
+      input.addEventListener('change', syncChipState);
+      syncChipState();
     });
 
     /* ---------- Interactive Client Filter Tabs ---------- */
